@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCbimo.id - Jual Crypto Eceran Instan</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- FontAwesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans min-h-screen flex flex-col">
+
+    <!-- NAVBAR -->
+    <header class="bg-gray-800 border-b border-gray-700 sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-2 text-xl font-bold text-cyan-400">
+                <i class="fa-solid fa-coins text-2xl"></i>
+                <span>SCbimo.<span class="text-white">id</span></span>
+            </div>
+            <nav class="flex flex-wrap justify-center gap-1 md:gap-2">
+                <button onclick="showPage('home')" id="nav-home" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium bg-cyan-600 text-white transition-all">Beranda</button>
+                <button onclick="showPage('exchange')" id="nav-exchange" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-gray-400 hover:text-white hover:bg-gray-700 transition-all">Kalkulator & Order</button>
+                <button onclick="showPage('guide')" id="nav-guide" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-gray-400 hover:text-white hover:bg-gray-700 transition-all">Cara Order</button>
+                <button onclick="showPage('history')" id="nav-history" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-gray-400 hover:text-white hover:bg-gray-700 transition-all">Riwayat</button>
+                <button onclick="showPage('contact')" id="nav-contact" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-gray-400 hover:text-white hover:bg-gray-700 transition-all">Kontak Admin</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow container mx-auto px-4 py-8 max-w-4xl">
+        
+        <!-- HALAMAN 1: BERANDA -->
+        <section id="page-home" class="page-content space-y-12">
+            <!-- Hero -->
+            <div class="text-center space-y-4 py-8">
+                <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight bg-gradient-to-r inline-block text-transparent bg-clip-text from-cyan-400 to-blue-500">
+                    Beli Crypto Eceran Tanpa Ribet
+                </h1>
+                <p class="text-gray-400 text-lg max-w-xl mx-auto">
+                    Mulai investasi crypto Anda dari Rp5.000 saja. Proses instan, aman, dan tanpa biaya minimal besar.
+                </p>
+                <div class="pt-4">
+                    <button onclick="showPage('exchange')" class="bg-cyan-500 hover:bg-cyan-600 text-gray-900 font-bold px-8 py-3 rounded-xl shadow-lg shadow-cyan-500/20 transition-all cursor-pointer">
+                        Beli Sekarang <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tabel Daftar Koin -->
+            <div class="bg-gray-800 rounded-2xl border border-gray-700 p-6 shadow-xl max-w-3xl mx-auto">
+                <h2 class="text-xl font-bold mb-4 flex items-center gap-2 text-cyan-400">
+                    <i class="fa-solid fa-chart-simple"></i> Harga Koin Hari Ini (Live)
+                </h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead>
+                            <tr class="border-b border-gray-700 text-gray-400 text-sm">
+                                <th class="pb-3">Aset</th>
+                                <th class="pb-3">Harga Dasar Eceran (IDR)</th>
+                                <th class="pb-3 text-right">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-700/50 text-sm">
+                            <tr>
+                                <td class="py-3 flex items-center gap-2 font-semibold"><i class="fa-brands fa-ethereum text-indigo-400 text-lg w-5"></i> Ethereum (ETH)</td>
+                                <td id="price-eth" class="py-3 font-mono text-cyan-400 font-semibold">Memuat...</td>
+                                <td class="py-3 text-right"><span class="bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded text-xs font-medium">Ready</span></td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 flex items-center gap-2 font-semibold"><i class="fa-solid fa-cubes text-amber-500 text-lg w-5"></i> BNB (Build n Build)</td>
+                                <td id="price-bnb" class="py-3 font-mono text-cyan-400 font-semibold">Memuat...</td>
+                                <td class="py-3 text-right"><span class="bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded text-xs font-medium">Ready</span></td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 flex items-center gap-2 font-semibold"><i class="fa-solid fa-bolt text-purple-400 text-lg w-5"></i> Solana (SOL)</td>
+                                <td id="price-sol" class="py-3 font-mono text-cyan-400 font-semibold">Memuat...</td>
+                                <td class="py-3 text-right"><span class="bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded text-xs font-medium">Ready</span></td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 flex items-center gap-2 font-semibold"><i class="fa-solid fa-dollar-sign text-emerald-500 text-lg w-5"></i> USDT (Tether)</td>
+                                <td id="price-usdt" class="py-3 font-mono text-cyan-400 font-semibold">Memuat...</td>
+                                <td class="py-3 text-right"><span class="bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded text-xs font-medium">Ready</span></td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 flex items-center gap-2 font-semibold"><i class="fa-brands fa-ethereum text-blue-400 text-lg w-5"></i> ETH Base Network</td>
+                                <td id="price-base" class="py-3 font-mono text-cyan-400 font-semibold">Memuat...</td>
+                                <td class="py-3 text-right"><span class="bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded text-xs font-medium">Ready</span></td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 flex items-center gap-2 font-semibold"><i class="fa-solid fa-diamond text-red-500 text-lg w-5"></i> TRON (TRX)</td>
+                                <td id="price-trx" class="py-3 font-mono text-cyan-400 font-semibold">Memuat...</td>
+                                <td class="py-3 text-right"><span class="bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded text-xs font-medium">Ready</span></td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 flex items-center gap-2 font-semibold"><i class="fa-solid fa-gem text-blue-500 text-lg w-5"></i> Toncoin (TON)</td>
+                                <td id="price-ton" class="py-3 font-mono text-cyan-400 font-semibold">Memuat...</td>
+                                <td class="py-3 text-right"><span class="bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded text-xs font-medium">Ready</span></td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 flex items-center gap-2 font-semibold"><i class="fa-solid fa-gem text-purple-500 text-lg w-5"></i> Polygon (POL)</td>
+                                <td id="price-matic" class="py-3 font-mono text-cyan-400 font-semibold">Memuat...</td>
+                                <td class="py-3 text-right"><span class="bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded text-xs font-medium">Ready</span></td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 flex items-center gap-2 font-semibold"><i class="fa-solid fa-water text-cyan-400 text-lg w-5"></i> Sui (SUI)</td>
+                                <td id="price-sui" class="py-3 font-mono text-cyan-400 font-semibold">Memuat...</td>
+                                <td class="py-3 text-right"><span class="bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded text-xs font-medium">Ready</span></td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 flex items-center gap-2 font-semibold"><i class="fa-solid fa-layer-group text-blue-300 text-lg w-5"></i> Arbitrum (ARB)</td>
+                                <td id="price-arb" class="py-3 font-mono text-cyan-400 font-semibold">Memuat...</td>
+                                <td class="py-3 text-right"><span class="bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded text-xs font-medium">Ready</span></td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 flex items-center gap-2 font-semibold"><i class="fa-solid fa-circle-nodes text-orange-400 text-lg w-5"></i> Aptos (APT)</td>
+                                <td id="price-apt" class="py-3 font-mono text-cyan-400 font-semibold">Memuat...</td>
+                                <td class="py-3 text-right"><span class="bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded text-xs font-medium">Ready</span></td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 flex items-center gap-2 font-semibold"><i class="fa-solid fa-shield-halved text-green-400 text-lg w-5"></i> Mantle (MNT)</td>
+                                <td id="price-mnt" class="py-3 font-mono text-cyan-400 font-semibold">Memuat...</td>
+                                <td class="py-3 text-right"><span class="bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded text-xs font-medium">Ready</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="text-xs text-gray-500 mt-3">*Harga tabel di atas menggunakan patokan dasar untung Rp3.000. Untuk order > Rp150.000 penyesuaian otomatis di kalkulator.</p>
+            </div>
+        </section>
+
+        <!-- HALAMAN 2: KALKULATOR & ORDER (MIN 5000) -->
+        <section id="page-exchange" class="page-content hidden max-w-xl mx-auto">
+            <div class="bg-gray-800 rounded-2xl border border-gray-700 p-6 shadow-xl space-y-6">
+                <div class="text-center">
+                    <h2 class="text-2xl font-bold">Kalkulator Instan</h2>
+                    <p class="text-gray-400 text-sm">Masukkan nominal pembelian Anda</p>
+                </div>
+
+                <form id="orderForm" class="space-y-4" onsubmit="handleOrder(event)">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-400 mb-1">Pilih Crypto</label>
+                        <select id="cryptoSelect" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500" onchange="calculateCrypto()">
+                            <option value="USDT">USDT (Tether)</option>
+                            <option value="ETH">ETH (Ethereum)</option>
+                            <option value="BNB">BNB (Build n Build)</option>
+                            <option value="SOL">SOL (Solana)</option>
+                            <option value="BASE">ETH (Base Network)</option>
+                            <option value="TRX">TRX (TRON)</option>
+                            <option value="TON">TON (Toncoin)</option>
+                            <option value="MATIC">POL (Polygon)</option>
+                            <option value="SUI">SUI (Sui)</option>
+                            <option value="ARB">ARB (Arbitrum)</option>
+                            <option value="APT">APT (Aptos)</option>
+                            <option value="MNT">MNT (Mantle)</option>
+                        </select>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-1">Bayar (IDR)</label>
+                            <!-- Diubah dari 10000 ke 5000 -->
+                            <input type="number" id="idrInput" placeholder="Min. 5000" min="5000" value="50000" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500" oninput="calculateCrypto()">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-1">Dapatkan Crypto</label>
+                            <input type="text" id="cryptoInput" readonly class="w-full bg-gray-700 border border-gray-600 rounded-xl px-4 py-3 text-gray-300 font-mono focus:outline-none">
+                        </div>
+                    </div>
+
+                    <div id="feeInfo" class="text-xs text-cyan-400 font-medium px-1">
+                        Biaya Admin: Rp 3.000 (Termasuk di dalam harga)
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-400 mb-1">Alamat Wallet Penerima</label>
+                        <input type="text" id="walletInput" required placeholder="Masukkan alamat wallet yang benar" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
+                        <p class="text-amber-400 text-xs mt-1"><i class="fa-solid fa-triangle-exclamation"></i> Pastikan jaringan wallet sesuai.</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-400 mb-1">Metode Pembayaran</label>
+                        <select class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
+                            <option value="qris">QRIS (OVO, Dana, LinkAja, Gopay)</option>
+                            <option value="bca">Transfer Bank BCA</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-600 text-gray-900 font-bold py-3 rounded-xl shadow-lg transition-all cursor-pointer">
+                        <i class="fa-solid fa-cart-shopping mr-2"></i> Kirim Order ke WhatsApp
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- HALAMAN 3: CARA ORDER -->
+        <section id="page-guide" class="page-content hidden max-w-2xl mx-auto space-y-6">
+            <h2 class="text-2xl font-bold text-center text-cyan-400">Panduan Lengkap Cara Membeli</h2>
+            <div class="space-y-4">
+                <div class="bg-gray-800 p-5 rounded-xl border border-gray-700 flex gap-4 items-start">
+                    <div class="bg-cyan-500/10 text-cyan-400 w-10 h-10 rounded-lg flex items-center justify-center font-bold shrink-0">1</div>
+                    <div>
+                        <h3 class="font-bold text-lg">Hitung Nominal Pembelian</h3>
+                        <p class="text-gray-400 text-sm mt-1">Masuk ke tab <strong>Kalkulator & Order</strong>, lalu pilih koin crypto yang ingin Anda beli dan masukkan jumlah rupiah (IDR) yang diinginkan (Minimal Rp5.000).</p>
+                    </div>
+                </div>
+                <div class="bg-gray-800 p-5 rounded-xl border border-gray-700 flex gap-4 items-start">
+                    <div class="bg-cyan-500/10 text-cyan-400 w-10 h-10 rounded-lg flex items-center justify-center font-bold shrink-0">2</div>
+                    <div>
+                        <h3 class="font-bold text-lg">Isi Alamat Wallet Tujuan</h3>
+                        <p class="text-gray-400 text-sm mt-1">Masukkan alamat wallet crypto Anda pada kolom yang disediakan. Pastikan jaringan (Network) sudah sesuai agar koin tidak hilang.</p>
+                    </div>
+                </div>
+                <div class="bg-gray-800 p-5 rounded-xl border border-gray-700 flex gap-4 items-start">
+                    <div class="bg-cyan-500/10 text-cyan-400 w-10 h-10 rounded-lg flex items-center justify-center font-bold shrink-0">3</div>
+                    <div>
+                        <h3 class="font-bold text-lg">Kirim Data Form & Ambil Invoice</h3>
+                        <p class="text-gray-400 text-sm mt-1">Klik tombol <strong>Kirim Order ke WhatsApp</strong>. Kirim pesan otomatis tersebut untuk meminta invoice/QRIS pembayaran resmi.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HALAMAN 4: RIWAYAT TRANSAKSI -->
+        <section id="page-history" class="page-content hidden space-y-6">
+            <div class="text-center">
+                <h2 class="text-2xl font-bold">Transaksi Pengguna Terakhir</h2>
+                <p class="text-gray-400 text-sm">Status real-time pengiriman koin para pelanggan</p>
+            </div>
+            <div class="bg-gray-800 rounded-2xl border border-gray-700 overflow-hidden shadow-xl">
+                <div class="p-4 bg-gray-750 font-semibold text-sm text-gray-400 border-b border-gray-700 grid grid-cols-4">
+                    <div>Waktu</div>
+                    <div>Aset Crypto</div>
+                    <div>Jumlah (IDR)</div>
+                    <div class="text-right">Status</div>
+                </div>
+                <div id="history-container" class="divide-y divide-gray-700/50 text-sm">
+                    <div id="empty-history-text" class="p-8 text-center text-gray-500 col-span-4">
+                        Belum ada riwayat transaksi saat ini.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HALAMAN 5: KONTAK ADMIN -->
+        <section id="page-contact" class="page-content hidden max-w-2xl mx-auto space-y-6">
+            <div class="bg-gray-800 rounded-2xl border border-gray-700 p-6 shadow-xl text-center space-y-6">
+                <i class="fa-solid fa-headset text-5xl text-cyan-400"></i>
+                <div class="space-y-2">
+                    <h2 class="text-2xl font-bold">Hubungi Sosial Media Kami</h2>
+                    <p class="text-gray-400 text-sm">Ikuti informasi stok koin terbaru melalui kanal resmi media sosial admin di bawah ini.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-2">
+                    <a href="https://wa.me/6282110703206" id="contact-wa" target="_blank" class="flex items-center justify-center gap-3 bg-emerald-600 hover:bg-emerald-700 text-white font-medium p-4 rounded-xl transition-all sm:col-span-2 lg:col-span-3">
+                        <i class="fa-brands fa-whatsapp text-2xl"></i> WhatsApp Resmi (Proses Order)
+                    </a>
+                    <a href="https://t.me/bimo_sc" target="_blank" class="flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-700 text-white font-medium p-4 rounded-xl transition-all">
+                        <i class="fa-brands fa-telegram text-2xl"></i> Telegram Grup
+                    </a>
+                    <a href="https://www.instagram.com/bimosc?igsh=MWJ5emVzb2F4bWE1YQ==" target="_blank" class="flex items-center justify-center gap-3 bg-pink-600 hover:bg-pink-700 text-white font-medium p-4 rounded-xl transition-all">
+                        <i class="fa-brands fa-instagram text-2xl"></i> Instagram Feed
+                    </a>
+                    <a href="https://x.com/bimo_sc" target="_blank" class="flex items-center justify-center gap-3 bg-gray-700 hover:bg-gray-600 text-white font-medium p-4 rounded-xl transition-all">
+                        <i class="fa-brands fa-x-twitter text-2xl"></i> X / Twitter
+                    </a>
+                    <a href="https://www.facebook.com/ipang.ipang.3979" target="_blank" class="flex items-center justify-center gap-3 bg-blue-800 hover:bg-blue-900 text-white font-medium p-4 rounded-xl transition-all sm:col-span-2 lg:col-span-1">
+                        <i class="fa-brands fa-facebook text-2xl"></i> Facebook Page
+                    </a>
+                </div>
+
+                <div class="bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs p-3 rounded-xl mt-4">
+                    <i class="fa-solid fa-circle-info"></i> <strong>Pemberitahuan:</strong> Untuk proses pembelian kilat crypto eceran, Anda wajib langsung menghubungi kontak WhatsApp Admin agar respon lebih instan.
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-950 text-gray-500 text-center py-6 border-t border-gray-800 text-xs">
+        <p>&copy; 2026 CryptoEceran. All rights reserved.</p>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        const NOMOR_WA = "6282110703206"; 
+        
+        let marketPrices = { 
+            USDT: 16400, ETH: 53000000, BNB: 9600000, SOL: 2450000, BASE: 53000000,
+            TRX: 2200, TON: 115000, MATIC: 7500, SUI: 32000, ARB: 15000, APT: 135000, MNT: 12000
+        };
+
+        function displayPrices() {
+            for (const [coin, price] of Object.entries(marketPrices)) {
+                const element = document.getElementById(`price-${coin.toLowerCase()}`);
+                if(element) {
+                    const defaultPriceWithFee = price + 3000;
+                    element.innerText = `Rp ${defaultPriceWithFee.toLocaleString('id-ID')}`;
+                }
+            }
+            calculateCrypto();
+        }
+
+        async function fetchPrices() {
+            try {
+                const response = await fetch('https://min-api.cryptocompare.com/data/pricemulti?fsyms=ETH,BNB,SOL,USDT,TRX,TON,MATIC,SUI,ARB,APT&tsyms=IDR');
+                const data = await response.json();
+                
+                if (data && !data.Response) {
+                    if(data.ETH) { marketPrices.ETH = Math.round(data.ETH.IDR); marketPrices.BASE = marketPrices.ETH; }
+                    if(data.BNB) marketPrices.BNB = Math.round(data.BNB.IDR);
+                    if(data.SOL) marketPrices.SOL = Math.round(data.SOL.IDR);
+                    if(data.USDT) marketPrices.USDT = Math.round(data.USDT.IDR);
+                    if(data.TRX) marketPrices.TRX = Math.round(data.TRX.IDR);
+                    if(data.TON) marketPrices.TON = Math.round(data.TON.IDR);
+                    if(data.MATIC) marketPrices.MATIC = Math.round(data.MATIC.IDR);
+                    if(data.SUI) marketPrices.SUI = Math.round(data.SUI.IDR);
+                    if(data.ARB) marketPrices.ARB = Math.round(data.ARB.IDR);
+                    if(data.APT) marketPrices.APT = Math.round(data.APT.IDR);
+                    
+                    marketPrices.MNT = data.MATIC ? Math.round(data.MATIC.IDR * 1.5) : marketPrices.MNT;
+                }
+            } catch (e) { 
+                console.log("Koneksi gagal, menggunakan harga lokal."); 
+            } finally {
+                displayPrices();
+            }
+        }
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page-content').forEach(p => p.classList.add('hidden'));
+            document.getElementById(`page-${pageId}`).classList.remove('hidden');
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('bg-cyan-600', 'text-white');
+                btn.classList.add('text-gray-400', 'hover:text-white', 'hover:bg-gray-700');
+            });
+            document.getElementById(`nav-${pageId}`).classList.add('bg-cyan-600', 'text-white');
+        }
+
+        function calculateCrypto() {
+            const selectedCoin = document.getElementById('cryptoSelect').value;
+            const basePrice = marketPrices[selectedCoin] || 10000;
+            const idrInput = parseFloat(document.getElementById('idrInput').value) || 0;
+            
+            let currentProfit = 3000; 
+            
+            if (idrInput > 150000) {
+                currentProfit = 5000; 
+            }
+
+            document.getElementById('feeInfo').innerText = `Biaya Admin: Rp ${currentProfit.toLocaleString('id-ID')} (Termasuk di dalam harga)`;
+
+            const finalEceranPrice = basePrice + currentProfit;
+
+            if (idrInput > 0) {
+                const result = idrInput / finalEceranPrice;
+                document.getElementById('cryptoInput').value = result >= 1 ? result.toFixed(4) : result.toFixed(7);
+            } else {
+                document.getElementById('cryptoInput').value = 0;
+            }
+        }
+
+        function handleOrder(e) {
+            e.preventDefault();
+            const cryptoSelectEl = document.getElementById('cryptoSelect');
+            const coinCode = cryptoSelectEl.value;
+            const cryptoText = cryptoSelectEl.options[cryptoSelectEl.selectedIndex].text;
+            const amountIdr = document.getElementById('idrInput').value;
+            const cryptoReceived = document.getElementById('cryptoInput').value;
+            const walletInput = document.getElementById('walletInput').value;
+
+            const emptyTxt = document.getElementById('empty-history-text');
+            if(emptyTxt) emptyTxt.remove();
+
+            const trxId = 'trx-' + Date.now();
+            const container = document.getElementById('history-container');
+            const newRow = document.createElement('div');
+            newRow.className = "p-4 grid grid-cols-4 items-center bg-gray-800";
+            newRow.id = trxId;
+            newRow.innerHTML = `
+                <div class="text-gray-400 text-xs time-tracker">Baru saja</div>
+                <div class="font-medium text-cyan-400">${coinCode}</div>
+                <div>Rp ${parseInt(amountIdr).toLocaleString('id-ID')}</div>
+                <div class="text-right text-xs font-mono text-amber-400 status-badge"><span class="bg-amber-500/10 px-2 py-0.5 rounded">Diproses</span></div>
+            `;
+            container.insertBefore(newRow, container.firstChild);
+
+            setTimeout(() => {
+                const badge = document.querySelector(`#${trxId} .status-badge`);
+                if(badge) badge.innerHTML = `<span class="bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded">Success</span>`;
+            }, 180000);
+
+            const message = `Halo Admin, saya ingin beli crypto eceran:%0A%0A- Koin: ${cryptoText}%0A- Nominal: Rp ${parseInt(amountIdr).toLocaleString('id-ID')}%0A- Estimasi Dapat: ${cryptoReceived}%0A- Wallet Tujuan: ${walletInput}%0A%0AMohon info detail pembayarannya. Terima kasih!`;
+            window.open(`https://wa.me/${NOMOR_WA}?text=${message}`, '_blank');
+        }
+
+        fetchPrices();
+        document.getElementById('contact-wa').href = `https://wa.me/${NOMOR_WA}`;
+        setInterval(fetchPrices, 60000);
+    </script>
+</body>
+</html>
